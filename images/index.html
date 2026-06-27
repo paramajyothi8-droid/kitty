@@ -1,1 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>CEZOO Prints</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#ffffff;
+}
+
+/* MAIN PAGE */
+.page{
+    width:100%;
+    min-height:auto;
+    position:relative;
+    overflow:hidden;
+    padding-bottom:28px;
+    background:linear-gradient(
+        180deg,
+        #139cff 0%,
+        #24a8ff 56%,
+        #8edaff 74%,
+        #ffffff 100%
+    );
+}
+
+/* WHITE CURVE BEHIND PRINTER */
+.page::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:300px;
+    transform:translateX(-50%);
+    width:1550px;
+    height:850px;
+    background:#ffffff;
+    border-radius:50% 50% 0 0 / 18% 18% 0 0;
+    z-index:1;
+}
+
+/* NAVBAR */
+.navbar{
+    width:100%;
+    max-width:980px;
+    margin:0 auto;
+    padding:26px 18px 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:10;
+}
+
+.nav-text{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:13px;
+    color:rgba(255,255,255,.78);
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    text-shadow:0 2px 5px rgba(0,0,0,.12);
+}
+
+.nav-text span{
+    white-space:nowrap;
+}
+
+.nav-text span.star{
+    font-size:14px;
+    color:#ffffff;
+    opacity:.9;
+}
+
+/* HERO */
+.hero{
+    width:100%;
+    max-width:980px;
+    margin:0 auto;
+    padding:25px 20px 0;
+    text-align:center;
+    position:relative;
+    z-index:5;
+}
+
+.title-wrap{
+    width:max-content;
+    max-width:calc(100vw - 40px);
+    margin:0 auto;
+    position:relative;
+    z-index:10;
+}
+
+.title{
+    font-family:'Bungee', Arial, sans-serif;
+    color:#ffffff;
+    font-size:72px;
+    line-height:1;
+    letter-spacing:1px;
+    white-space:nowrap;
+    text-shadow:0 5px 14px rgba(0,0,0,.10);
+}
+
+/* IN 4 MINS TAG */
+.time-tag{
+    position:absolute;
+    right:0;
+    top:100%;
+    transform:translateX(50%) rotate(-7deg);
+    background:#ffef75;
+    color:#111;
+    padding:7px 18px;
+    font-size:23px;
+    font-weight:800;
+    border-radius:4px;
+    box-shadow:0 5px 10px rgba(0,0,0,.13);
+    white-space:nowrap;
+}
+
+.time-tag::before,
+.time-tag::after{
+    content:"";
+    position:absolute;
+    top:0;
+    width:10px;
+    height:100%;
+    background:#ffef75;
+}
+
+.time-tag::before{
+    left:-6px;
+    clip-path:polygon(
+        100% 0,
+        0 15%,
+        100% 35%,
+        0 55%,
+        100% 75%,
+        0 100%,
+        100% 100%
+    );
+}
+
+.time-tag::after{
+    right:-6px;
+    clip-path:polygon(
+        0 0,
+        100% 15%,
+        0 35%,
+        100% 55%,
+        0 75%,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* PRINTER AREA */
+.printer-area{
+    width:100%;
+    max-width:720px;
+    margin:86px auto 0;
+    position:relative;
+    z-index:6;
+}
+
+.printer-img{
+    width:100%;
+    max-width:470px;
+    display:block;
+    margin:0 auto;
+    object-fit:contain;
+    position:relative;
+    z-index:6;
+    filter:drop-shadow(0 18px 22px rgba(0,0,0,.18));
+}
+
+/* SCISSOR DECORATION */
+.scissor{
+    position:absolute;
+    left:9%;
+    bottom:18px;
+    width:105px;
+    height:42px;
+    z-index:7;
+    transform:rotate(-11deg);
+}
+
+.scissor::before{
+    content:"✂";
+    position:absolute;
+    left:0;
+    top:-14px;
+    font-size:70px;
+    color:#168fe8;
+}
+
+/* SMALL PAPER DECORATION */
+.paper-small{
+    position:absolute;
+    right:9%;
+    bottom:33px;
+    width:88px;
+    height:62px;
+    background:#ffffff;
+    border-radius:5px;
+    z-index:7;
+    transform:rotate(12deg);
+    box-shadow:0 7px 18px rgba(0,0,0,.12);
+}
+
+.paper-small span{
+    display:block;
+    width:58%;
+    height:5px;
+    margin:10px auto;
+    background:#f4c21d;
+    border-radius:20px;
+}
+
+.paper-small span:nth-child(2){
+    width:72%;
+}
+
+.paper-small span:nth-child(3){
+    width:48%;
+}
+
+/* BOTTOM WHITE CARD */
+.info-card{
+    width:92%;
+    max-width:520px;
+    margin:56px auto 0;
+    background:#ffffff;
+    border-radius:24px;
+    padding:18px 16px;
+    position:relative;
+    z-index:8;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    text-align:center;
+}
+
+.free-text{
+    font-size:22px;
+    font-weight:900;
+    color:#0f172a;
+    margin-bottom:8px;
+}
+
+.quality{
+    font-size:15px;
+    color:#334155;
+    font-weight:700;
+    line-height:1.6;
+}
+
+.upload-btn{
+    margin-top:15px;
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:16px;
+    background:#111827;
+    color:#ffffff;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.upload-btn:hover{
+    background:#000000;
+}
+
+/* WE PROMISE SECTION */
+.promise-section{
+    width:100%;
+    background:#ffffff;
+    padding:36px 18px 14px;
+    overflow:hidden;
+}
+
+.promise-heading{
+    text-align:center;
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:7px;
+    color:#33333a;
+    position:relative;
+    margin-bottom:30px;
+}
+
+.promise-heading::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-13px;
+    transform:translateX(-50%);
+    width:210px;
+    height:14px;
+    border-bottom:4px solid #3ca8ee;
+    border-radius:50%;
+}
+
+.promise-art{
+    width:100%;
+    max-width:730px;
+    height:405px;
+    margin:0 auto;
+    position:relative;
+}
+
+.promise-note{
+    position:absolute;
+    background:linear-gradient(135deg,#fff06a,#fff59d);
+    box-shadow:0 10px 22px rgba(0,0,0,.10);
+    color:#222;
+    z-index:3;
+}
+
+.promise-note.square{
+    width:220px;
+    height:170px;
+    padding:28px 24px 20px;
+}
+
+.promise-note.square::after{
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:58px;
+    height:58px;
+    background:linear-gradient(135deg,rgba(255,255,255,.65),rgba(230,210,68,.45));
+    clip-path:polygon(100% 0,0 100%,100% 100%);
+}
+
+.note-safety{
+    left:65px;
+    top:30px;
+}
+
+.note-security{
+    right:65px;
+    top:30px;
+}
+
+.note-tape{
+    position:absolute;
+    right:-20px;
+    top:10px;
+    width:48px;
+    height:20px;
+    background:#ff9877;
+    opacity:.85;
+    transform:rotate(10deg);
+    border-radius:2px;
+}
+
+.promise-icon{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:#f4d936;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.promise-note h3{
+    font-size:28px;
+    line-height:1;
+    margin-bottom:10px;
+    font-weight:900;
+}
+
+.promise-note p{
+    font-size:19px;
+    line-height:1.18;
+    font-weight:700;
+}
+
+.promise-note.long{
+    width:380px;
+    min-height:108px;
+    left:185px;
+    top:260px;
+    padding:27px 28px 20px 98px;
+    transform:rotate(-7deg);
+}
+
+.promise-note.long .promise-icon{
+    position:absolute;
+    left:28px;
+    top:30px;
+    margin:0;
+}
+
+.promise-note.long h3{
+    font-size:26px;
+    margin-bottom:6px;
+}
+
+.promise-note.long p{
+    font-size:19px;
+}
+
+.deco-scissor{
+    position:absolute;
+    left:5px;
+    top:195px;
+    font-size:112px;
+    color:#168fe8;
+    transform:rotate(-20deg);
+    z-index:2;
+}
+
+.deco-tape-round{
+    position:absolute;
+    left:45px;
+    bottom:36px;
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    border:16px solid #f5bf45;
+    background:#ffffff;
+    z-index:2;
+}
+
+.deco-photo{
+    position:absolute;
+    right:28px;
+    top:180px;
+    width:85px;
+    height:100px;
+    background:#dfe3ea;
+    border-radius:4px;
+    transform:rotate(13deg);
+    z-index:2;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.deco-photo::before{
+    content:"";
+    position:absolute;
+    left:12px;
+    top:12px;
+    right:12px;
+    bottom:12px;
+    background:#ffffff;
+}
+
+.deco-photo::after{
+    content:"";
+    position:absolute;
+    left:22px;
+    bottom:22px;
+    width:45px;
+    height:34px;
+    background:#ff9b78;
+    clip-path:polygon(0 100%,45% 35%,70% 60%,100% 30%,100% 100%);
+}
+
+.blue-dot{
+    position:absolute;
+    right:19px;
+    top:44px;
+    width:28px;
+    height:28px;
+    background:#0b8ff1;
+    border-radius:50%;
+    z-index:3;
+}
+
+.spark{
+    position:absolute;
+    right:145px;
+    bottom:48px;
+    width:48px;
+    height:42px;
+    z-index:1;
+}
+
+.spark span{
+    position:absolute;
+    width:4px;
+    height:22px;
+    background:#f6c037;
+    border-radius:10px;
+}
+
+.spark span:nth-child(1){
+    left:0;
+    top:12px;
+    transform:rotate(-60deg);
+}
+
+.spark span:nth-child(2){
+    left:22px;
+    top:4px;
+    transform:rotate(-10deg);
+}
+
+.spark span:nth-child(3){
+    left:42px;
+    top:16px;
+    transform:rotate(45deg);
+}
+
+/* FAQ SECTION */
+.faq-section{
+    width:100%;
+    max-width:950px;
+    margin:0 auto;
+    padding:6px 28px 26px;
+    background:#ffffff;
+}
+
+.faq-title{
+    font-size:48px;
+    font-weight:900;
+    color:#111827;
+    margin-bottom:18px;
+}
+
+.faq-item{
+    border-bottom:1.5px solid #d1d5db;
+}
+
+.faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    padding:22px 0;
+    font-size:24px;
+    font-weight:900;
+    color:#2b2f38;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+}
+
+.faq-item summary::-webkit-details-marker{
+    display:none;
+}
+
+.faq-item summary::after{
+    content:"";
+    width:15px;
+    height:15px;
+    border-right:3px solid #0066ff;
+    border-bottom:3px solid #0066ff;
+    transform:rotate(45deg);
+    transition:.25s ease;
+    flex-shrink:0;
+}
+
+.faq-item[open] summary::after{
+    transform:rotate(-135deg);
+}
+
+.faq-answer{
+    padding:0 0 22px;
+    font-size:17px;
+    line-height:1.55;
+    color:#475569;
+    font-weight:600;
+}
+
+/* CERTAIN THINGS SECTION */
+.paper-section{
+    width:100%;
+    background:#f2f3f8;
+    padding:0 0 0;
+    overflow:hidden;
+}
+
+.paper-poster{
+    width:100%;
+    max-width:950px;
+    min-height:470px;
+    margin:0 auto;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.9) 0 12%, transparent 13%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.75) 0 10%, transparent 11%),
+        linear-gradient(135deg,#f7f8fc 0%,#e9ebf3 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    text-align:center;
+    padding:55px 20px 58px;
+}
+
+.paper-poster::before{
+    content:"";
+    position:absolute;
+    inset:35px;
+    background:
+        linear-gradient(#dfe2eb 1px, transparent 1px),
+        linear-gradient(90deg,#dfe2eb 1px, transparent 1px);
+    background-size:70px 70px;
+    opacity:.35;
+}
+
+.ctrl-box{
+    width:160px;
+    height:125px;
+    background:#2c2f35;
+    border-radius:18px;
+    box-shadow:0 18px 32px rgba(0,0,0,.22);
+    position:relative;
+    z-index:2;
+    transform:rotate(-8deg);
+    margin-bottom:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.ctrl-box::before{
+    content:"";
+    position:absolute;
+    top:-74px;
+    left:50%;
+    transform:translateX(-50%);
+    width:18px;
+    height:80px;
+    background:#22262c;
+    border-radius:12px 12px 0 0;
+}
+
+.ctrl-box::after{
+    content:"CEZOO";
+    position:absolute;
+    bottom:12px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#ffffff;
+    font-size:13px;
+    font-weight:900;
+    border:2px solid rgba(255,255,255,.45);
+    padding:3px 12px;
+    border-radius:12px;
+}
+
+.key{
+    width:58px;
+    height:58px;
+    background:#f7f7f7;
+    border-radius:8px;
+    box-shadow:inset 0 -5px 0 rgba(0,0,0,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    font-weight:900;
+    color:#343941;
+}
+
+.paper-title{
+    position:relative;
+    z-index:2;
+    font-size:44px;
+    line-height:1.05;
+    font-weight:900;
+    color:#777b86;
+    letter-spacing:-1px;
+}
+
+.paper-title span{
+    display:block;
+    font-size:66px;
+    color:#6f737d;
+}
+
+.paper-sub{
+    position:relative;
+    z-index:2;
+    margin-top:22px;
+    font-size:20px;
+    font-weight:800;
+    color:#8b8f99;
+}
+
+.paper-sub span{
+    color:#0066ff;
+    font-size:22px;
+}
+.offer-line{
+    margin-top:14px;        /* gap between Upload Document and offer line */
+    font-size:12px;
+    font-weight:700;
+    color:#64748b;
+    line-height:1.4;
+}
+
+/* MOBILE VIEW */
+@media(max-width:600px){
+
+    .page{
+        padding-bottom:24px;
+        background:linear-gradient(
+            180deg,
+            #129cff 0%,
+            #22a7ff 56%,
+            #9fddff 74%,
+            #ffffff 100%
+        );
+    }
+
+    .page::after{
+        top:270px;
+        width:820px;
+        height:760px;
+        border-radius:50% 50% 0 0 / 16% 16% 0 0;
+    }
+
+    .navbar{
+        padding:22px 10px 0;
+    }
+
+    .nav-text{
+        font-size:12px;
+        letter-spacing:3px;
+        gap:8px;
+    }
+
+    .hero{
+        padding-top:28px;
+    }
+
+    .title{
+        font-size:44px;
+        letter-spacing:.5px;
+    }
+
+    .time-tag{
+        transform:translateX(18%) rotate(-7deg);
+        font-size:17px;
+        padding:6px 13px;
+    }
+
+    .printer-area{
+        margin-top:86px;
+    }
+
+    .printer-img{
+        max-width:330px;
+    }
+
+    .scissor{
+        left:4%;
+        bottom:20px;
+        transform:rotate(-13deg) scale(.75);
+    }
+
+    .paper-small{
+        right:3%;
+        bottom:32px;
+        transform:rotate(14deg) scale(.78);
+    }
+
+    .info-card{
+        width:90%;
+        margin-top:48px;
+        border-radius:20px;
+        padding:15px 13px;
+    }
+
+    .free-text{
+        font-size:19px;
+    }
+
+    .quality{
+        font-size:13px;
+    }
+
+    .upload-btn{
+        height:47px;
+        font-size:15px;
+    }
+    .offer-line{
+    margin-top:12px;
+    font-size:11px;
+    }
+
+    .promise-section{
+        padding:34px 12px 10px;
+    }
+
+    .promise-heading{
+        font-size:21px;
+        letter-spacing:6px;
+        margin-bottom:24px;
+    }
+
+    .promise-heading::after{
+        width:190px;
+        bottom:-12px;
+    }
+
+    .promise-art{
+        max-width:390px;
+        height:390px;
+    }
+
+    .promise-note.square{
+        width:43%;
+        height:135px;
+        padding:20px 13px 12px;
+    }
+
+    .note-safety{
+        left:24px;
+        top:28px;
+    }
+
+    .note-security{
+        right:24px;
+        top:28px;
+    }
+
+    .note-tape{
+        width:42px;
+        height:18px;
+        right:-18px;
+        top:8px;
+    }
+
+    .promise-icon{
+        width:38px;
+        height:38px;
+        font-size:18px;
+        margin-bottom:8px;
+    }
+
+    .promise-note h3{
+        font-size:23px;
+        margin-bottom:7px;
+    }
+
+    .promise-note p{
+        font-size:15px;
+        line-height:1.16;
+    }
+
+    .promise-note.long{
+        width:292px;
+        min-height:90px;
+        left:50%;
+        top:230px;
+        padding:20px 18px 15px 78px;
+        transform:translateX(-50%) rotate(-7deg);
+    }
+
+    .promise-note.long .promise-icon{
+        left:21px;
+        top:24px;
+    }
+
+    .promise-note.long h3{
+        font-size:22px;
+        margin-bottom:4px;
+    }
+
+    .promise-note.long p{
+        font-size:15px;
+    }
+
+    .deco-scissor{
+        left:-8px;
+        top:178px;
+        font-size:90px;
+    }
+
+    .deco-tape-round{
+        left:22px;
+        bottom:48px;
+        width:60px;
+        height:60px;
+        border-width:13px;
+    }
+
+    .deco-photo{
+        right:18px;
+        top:175px;
+        width:70px;
+        height:84px;
+    }
+
+    .blue-dot{
+        width:23px;
+        height:23px;
+        right:15px;
+        top:38px;
+    }
+
+    .spark{
+        right:52px;
+        bottom:82px;
+        transform:scale(.68);
+    }
+
+    .faq-section{
+        padding:2px 28px 24px;
+    }
+
+    .faq-title{
+        font-size:44px;
+        margin-bottom:12px;
+    }
+
+    .faq-item summary{
+        font-size:22px;
+        line-height:1.2;
+        padding:21px 0;
+    }
+
+    .faq-answer{
+        font-size:15px;
+        padding-bottom:20px;
+    }
+
+    .paper-poster{
+        min-height:425px;
+        padding:45px 18px 48px;
+    }
+
+    .ctrl-box{
+        width:125px;
+        height:100px;
+        border-radius:14px;
+        margin-bottom:36px;
+    }
+
+    .ctrl-box::before{
+        height:62px;
+        top:-58px;
+        width:14px;
+    }
+
+    .key{
+        width:46px;
+        height:46px;
+        font-size:22px;
+    }
+
+    .ctrl-box::after{
+        font-size:10px;
+        padding:3px 10px;
+    }
+
+    .paper-title{
+        font-size:34px;
+    }
+
+    .paper-title span{
+        font-size:50px;
+    }
+
+    .paper-sub{
+        font-size:16px;
+    }
+
+    .free-delivery-strip{
+        font-size:18px;
+        padding:15px 12px;
+    }
+}
+
+/* SMALL MOBILE */
+@media(max-width:380px){
+
+    .page::after{
+        top:255px;
+        width:720px;
+        height:730px;
+    }
+
+    .nav-text{
+        font-size:10px;
+        letter-spacing:2px;
+        gap:7px;
+    }
+
+    .title{
+        font-size:38px;
+    }
+
+    .time-tag{
+        transform:translateX(10%) rotate(-7deg);
+        font-size:15px;
+    }
+
+    .printer-img{
+        max-width:295px;
+    }
+
+    .note-safety{
+        left:16px;
+    }
+
+    .note-security{
+        right:16px;
+    }
+
+    .promise-note.square{
+        width:44%;
+        padding-left:10px;
+        padding-right:8px;
+    }
+
+    .promise-note h3{
+        font-size:21px;
+    }
+
+    .promise-note p{
+        font-size:14px;
+    }
+
+    .promise-note.long{
+        width:270px;
+    }
+
+    .faq-section{
+        padding-left:22px;
+        padding-right:22px;
+    }
+
+    .faq-item summary{
+        font-size:20px;
+    }
+
+    .paper-title{
+        font-size:30px;
+    }
+
+    .paper-title span{
+        font-size:44px;
+    }
+}
+/* FINAL UPLOAD BUTTON + POPUP FIX */
+.upload-area{
+    width:100%;
+}
+
+/* REDUCED UPLOAD BUTTON SIZE */
+.upload-btn{
+    margin:15px auto 0;
+    width:68%;
+    max-width:270px;
+    height:42px;
+    border:none;
+    border-radius:14px;
+    background:#111827;
+    color:#ffffff;
+    font-size:14px;
+    font-weight:900;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.upload-btn:hover{
+    background:#000000;
+}
+
+.offer-note{
+    margin-top:14px;
+    font-size:12px;
+    font-weight:700;
+    color:#64748b;
+    line-height:1.4;
+}
+
+/* BOTTOM UPLOAD POPUP */
+.upload-popup{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%) translateY(140%);
+    width:92%;
+    max-width:430px;
+    background:#ffffff;
+    border-radius:22px;
+    padding:16px;
+    z-index:99999;
+    box-shadow:0 12px 35px rgba(0,0,0,.25);
+    border:1px solid #e5e7eb;
+    transition:.35s ease;
+}
+
+.upload-popup.show{
+    transform:translateX(-50%) translateY(0);
+}
+
+.popup-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.popup-head h4{
+    font-size:17px;
+    font-weight:900;
+    color:#111827;
+    margin-bottom:4px;
+}
+
+.popup-head p{
+    font-size:13px;
+    font-weight:700;
+    color:#64748b;
+}
+
+.popup-close{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:50%;
+    background:#f1f5f9;
+    color:#111827;
+    font-size:22px;
+    line-height:1;
+    cursor:pointer;
+}
+
+.progress-box{
+    width:100%;
+    height:9px;
+    background:#e5e7eb;
+    border-radius:50px;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-line{
+    width:0%;
+    height:100%;
+    background:#0066ff;
+    border-radius:50px;
+    transition:.12s linear;
+}
+
+.progress-percent{
+    margin-top:9px;
+    font-size:13px;
+    font-weight:900;
+    color:#111827;
+    text-align:right;
+}
+
+.reupload-btn{
+    width:100%;
+    height:42px;
+    margin-top:13px;
+    border:none;
+    border-radius:13px;
+    background:#ef4444;
+    color:#ffffff;
+    font-size:15px;
+    font-weight:900;
+    cursor:pointer;
+    display:none;
+}
+
+/* SUCCESS POPUP */
+.upload-popup.success .progress-line{
+    background:#16a34a;
+}
+
+.upload-popup.success #popupTitle{
+    color:#16a34a;
+}
+
+/* ERROR POPUP */
+.upload-popup.error .progress-line{
+    background:#ef4444;
+}
+
+.upload-popup.error #popupTitle{
+    color:#ef4444;
+}
+
+/* MOBILE UPLOAD FIX */
+@media(max-width:600px){
+
+    .upload-btn{
+        width:72%;
+        max-width:240px;
+        height:40px;
+        font-size:13px;
+        border-radius:13px;
+    }
+
+    .offer-note{
+        margin-top:13px;
+        font-size:11px;
+    }
+
+    .upload-popup{
+        width:90%;
+        bottom:18px;
+        border-radius:20px;
+        padding:15px;
+    }
+
+    .popup-head h4{
+        font-size:16px;
+    }
+
+    .popup-head p{
+        font-size:12px;
+    }
+
+    .reupload-btn{
+        height:40px;
+        font-size:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO PAGE ONLY -->
+<div class="page">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-text">
+            <span>Safe</span>
+            <span class="star">✦</span>
+            <span>Secure</span>
+            <span class="star">✦</span>
+            <span>Instant</span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="title-wrap">
+            <h1 class="title">CEZOO Prints</h1>
+            <div class="time-tag">in 4 mins</div>
+        </div>
+
+        <!-- PRINTER IMAGE AREA -->
+        <div class="printer-area">
+
+            <!-- Keep your printer image in same folder -->
+            <img src="xerox.png.png" alt="CEZOO Printer" class="printer-img">
+
+            <div class="scissor"></div>
+
+            <div class="paper-small">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BELOW BOX -->
+    <div class="info-card">
+        <div class="free-text">Get your first print free</div>
+
+        <div class="quality">
+            A4 Size Prints <br>
+            75 GSM Paper Quality
+        </div>
+
+     <div class="upload-area">
+    <label for="documentUpload" class="upload-btn">Upload Document</label>
+
+    <input 
+        type="file" 
+        id="documentUpload" 
+        hidden 
+        multiple 
+        accept=".pdf,application/pdf,image/*"
+    >
+
+    <p class="offer-note">
+        *Offer applies to 10 pages of BW or ₹30 max discount on color
+    </p>
+</div>
+    </div>
+
+</div>
+<!-- PAGE ENDS HERE -->
+
+<!-- WE PROMISE SECTION -->
+<section class="promise-section">
+
+    <h2 class="promise-heading">WE PROMISE</h2>
+
+    <div class="promise-art">
+
+        <div class="promise-note square note-safety">
+            <div class="note-tape"></div>
+            <div class="promise-icon">🛡️</div>
+            <h3>Safety</h3>
+            <p>Documents are deleted once printed!</p>
+        </div>
+
+        <div class="promise-note square note-security">
+            <div class="promise-icon">🔒</div>
+            <h3>Security</h3>
+            <p>Prints are sealed before delivery</p>
+        </div>
+
+        <div class="deco-scissor">✂</div>
+        <div class="deco-tape-round"></div>
+
+        <div class="deco-photo">
+            <div class="blue-dot"></div>
+        </div>
+
+        <div class="promise-note long">
+            <div class="promise-icon">🙈</div>
+            <h3>No Peek Policy</h3>
+            <p>Our staff will not look at your Documents</p>
+        </div>
+
+        <div class="spark">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAQ SECTION - ONLY HTML CSS -->
+<section class="faq-section">
+
+    <h2 class="faq-title">FAQ</h2>
+
+    <details class="faq-item">
+        <summary>
+            <span>What Document format can I print?</span>
+        </summary>
+        <p class="faq-answer">
+            You can upload PDF files for documents. For photos, you can upload JPG, PNG, JPEG or WEBP images.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>What printing options can I choose from?</span>
+        </summary>
+        <p class="faq-answer">
+            You can choose black & white prints, color prints and photo prints based on your document type.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>How do I upload my documents?</span>
+        </summary>
+        <p class="faq-answer">
+            Click the Upload Document button, select your files, and continue with your print order.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>Are my documents/photos stored and handled securely?</span>
+        </summary>
+        <p class="faq-answer">
+            Yes. Your files are handled safely and deleted once printing is completed.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>What is the max number of files/photos I can upload?</span>
+        </summary>
+        <p class="faq-answer">
+            You can upload multiple documents and photos at once. For smooth printing, keep each file clear and properly formatted.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>I have an issue with my order, what now?</span>
+        </summary>
+        <p class="faq-answer">
+            You can contact support with your order details. Our team will help you with printing, delivery or payment issues.
+        </p>
+    </details>
+
+    <details class="faq-item">
+        <summary>
+            <span>How long does it take to get my order delivered?</span>
+        </summary>
+        <p class="faq-answer">
+            Most print orders are delivered quickly depending on your location, file size and printing options.
+        </p>
+    </details>
+
+</section>
+
+<!-- CERTAIN THINGS SECTION AFTER FAQ -->
+<section class="paper-section">
+
+    <div class="paper-poster">
+
+        <div class="ctrl-box">
+            <div class="key">Ctrl</div>
+            <div class="key">P</div>
+        </div>
+
+        <h2 class="paper-title">
+            Certain things
+            <span>deserve paper!</span>
+        </h2>
+
+        <p class="paper-sub">
+            <span>♥</span> Perfect it with CEZOO Prints
+        </p>
+
+    </div>
+
+</section>
+<div class="upload-popup" id="uploadPopup">
+
+    <div class="popup-head">
+        <div>
+            <h4 id="popupTitle">Uploading file...</h4>
+            <p id="popupText">Please wait</p>
+        </div>
+
+        <button type="button" class="popup-close" id="popupClose">×</button>
+    </div>
+
+    <div class="progress-box">
+        <div class="progress-line" id="progressLine"></div>
+    </div>
+
+    <div class="progress-percent" id="progressPercent">0%</div>
+
+    <button type="button" class="reupload-btn" id="reuploadBtn">
+        Reupload
+    </button>
+
+</div>
+<script>
+const documentUpload = document.getElementById("documentUpload");
+const uploadPopup = document.getElementById("uploadPopup");
+const popupTitle = document.getElementById("popupTitle");
+const popupText = document.getElementById("popupText");
+const progressLine = document.getElementById("progressLine");
+const progressPercent = document.getElementById("progressPercent");
+const popupClose = document.getElementById("popupClose");
+const reuploadBtn = document.getElementById("reuploadBtn");
+
+documentUpload.addEventListener("change", function(){
+
+    const files = Array.from(documentUpload.files);
+
+    if(files.length === 0){
+        return;
+    }
+
+    const onlyPdf = files.every(function(file){
+        return file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+    });
+
+    let percent = 0;
+
+    uploadPopup.classList.remove("success", "error");
+    uploadPopup.classList.add("show");
+
+    popupTitle.textContent = "Uploading file...";
+    popupText.textContent = "Please wait while your file is uploading";
+    progressLine.style.width = "0%";
+    progressPercent.textContent = "0%";
+    reuploadBtn.style.display = "none";
+
+    const uploading = setInterval(function(){
+
+        percent++;
+
+        progressLine.style.width = percent + "%";
+        progressPercent.textContent = percent + "%";
+
+        if(percent >= 100){
+            clearInterval(uploading);
+
+            if(onlyPdf){
+                uploadPopup.classList.add("success");
+                popupTitle.textContent = "Upload Successfully";
+                popupText.textContent = files.length + " PDF file uploaded successfully";
+                reuploadBtn.style.display = "none";
+
+                setTimeout(function(){
+                    uploadPopup.classList.remove("show");
+                }, 2500);
+
+            }else{
+                uploadPopup.classList.add("error");
+                popupTitle.textContent = "Upload Failed";
+                popupText.textContent = "Only PDF files are allowed. Please reupload.";
+                reuploadBtn.style.display = "block";
+            }
+        }
+
+    }, 25);
+});
+
+popupClose.addEventListener("click", function(){
+    uploadPopup.classList.remove("show");
+});
+
+reuploadBtn.addEventListener("click", function(){
+    documentUpload.value = "";
+    uploadPopup.classList.remove("show");
+
+    setTimeout(function(){
+        documentUpload.click();
+    }, 300);
+});
+</script>
+
+</body>
+</html>
